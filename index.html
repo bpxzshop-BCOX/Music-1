@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>วิล เซอร์ฟอท (Bot) — ดูแลเซิร์ฟเวอร์ตลอด 24 ชั่วโมง</title>
+  <title>Music-1 (Bot)</title>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700;900&family=Itim&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -297,7 +297,6 @@
     .feat-card:nth-child(3) { background: linear-gradient(145deg,#f0faff,#f8fdff); border-color: rgba(184,224,255,0.2); }
     .feat-card:nth-child(4) { background: linear-gradient(145deg,#f0fff8,#f8fffc); border-color: rgba(184,240,224,0.2); }
     .feat-card:nth-child(5) { background: linear-gradient(145deg,#fffaf0,#fffdf8); border-color: rgba(255,214,176,0.2); }
-    .feat-card:nth-child(6) { background: linear-gradient(145deg,#fff8f0,#fffcf8); border-color: rgba(255,179,209,0.2); }
     .feat-card:hover { transform: translateY(-6px) rotate(-0.5deg); box-shadow: 0 16px 40px rgba(0,0,0,0.07); }
     .feat-card:hover .feat-icon-wrap { transform: scale(1.15) rotate(10deg); }
 
@@ -312,13 +311,24 @@
     .feat-card:nth-child(3) .feat-icon-wrap { background: linear-gradient(135deg,#d6eeff,#b8e0ff); }
     .feat-card:nth-child(4) .feat-icon-wrap { background: linear-gradient(135deg,#c8f8e8,#b8f0e0); }
     .feat-card:nth-child(5) .feat-icon-wrap { background: linear-gradient(135deg,#ffe8c8,#ffd6b0); }
-    .feat-card:nth-child(6) .feat-icon-wrap { background: linear-gradient(135deg,#ffd6e8,#ffb3d1); }
 
     .feat-card h3 {
       font-family: 'Kanit', sans-serif; font-size: .97rem; font-weight: 700;
       color: var(--text); margin-bottom: .45rem;
     }
     .feat-card p { color: var(--muted); font-size: .81rem; line-height: 1.7; }
+
+    /* CMD GROUP LABEL */
+    .cmd-group-label {
+      display: flex; align-items: center; gap: .6rem;
+      margin: 1.8rem 0 .8rem;
+      font-family: 'Kanit', sans-serif; font-size: .8rem; font-weight: 700;
+      color: var(--muted); letter-spacing: .08em; text-transform: uppercase;
+    }
+    .cmd-group-label::before, .cmd-group-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,133,179,0.2), transparent);
+    }
 
     /* COMMANDS */
     .cmd-list { display: flex; flex-direction: column; gap: .8rem; }
@@ -331,29 +341,39 @@
     .cmd-card::before {
       content: '';
       position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(180deg, var(--pink), var(--lav));
+      background: linear-gradient(180deg, var(--sky2), var(--lav2));
       border-radius: 4px 0 0 4px;
       transform: scaleY(0); transform-origin: bottom; transition: transform .25s;
     }
-    .cmd-card:hover { border-color: rgba(255,133,179,0.4); transform: translateX(6px); box-shadow: 0 6px 20px rgba(255,133,179,0.1); }
+    .cmd-card:hover { border-color: rgba(133,200,255,0.5); transform: translateX(6px); box-shadow: 0 6px 20px rgba(133,200,255,0.15); }
     .cmd-card:hover::before { transform: scaleY(1); }
     .cmd-icon-wrap {
       width: 40px; height: 40px; border-radius: 14px; flex-shrink: 0;
-      background: linear-gradient(135deg,rgba(255,179,209,0.3),rgba(201,184,255,0.3));
+      background: linear-gradient(135deg,rgba(133,200,255,0.25),rgba(176,160,255,0.25));
       display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
     }
     .cmd-name {
       font-family: 'Kanit', sans-serif; font-size: .93rem; font-weight: 700;
-      color: var(--pink2); min-width: 135px;
+      color: var(--sky2); min-width: 135px;
     }
     .cmd-desc { flex: 1; color: var(--muted); font-size: .81rem; line-height: 1.5; }
     .cmd-badge {
       font-size: .64rem; padding: .2rem .7rem; border-radius: 20px;
       font-weight: 700; white-space: nowrap; flex-shrink: 0;
     }
-    .badge-all   { background: rgba(255,179,209,0.2); color: var(--pink2); border: 1.5px solid rgba(255,133,179,0.3); }
-    .badge-admin { background: rgba(184,240,224,0.3); color: #2db88a;     border: 1.5px solid rgba(125,232,200,0.4); }
-    .badge-owner { background: rgba(255,240,160,0.4); color: #c8960a;     border: 1.5px solid rgba(255,214,50,0.4); }
+    .badge-all   { background: rgba(133,200,255,0.2); color: var(--sky2); border: 1.5px solid rgba(133,200,255,0.4); }
+
+    /* NOTE CARD */
+    .note-card {
+      background: linear-gradient(135deg, rgba(255,179,209,0.12), rgba(201,184,255,0.12));
+      border: 1.5px solid rgba(255,133,179,0.25);
+      border-radius: 18px; padding: 1.2rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .note-card .note-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .note-card p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+    .note-card strong { color: var(--pink2); }
 
     /* DEV */
     .dev-card {
@@ -466,14 +486,14 @@
 <nav>
   <a href="#" class="nav-logo">
     <div class="nav-logo-blob">🌸</div>
-    วิล เซอร์ฟอท (Bot)
+    Music-1 (Bot)
   </a>
   <ul>
     <li><a href="#features">ฟีเจอร์</a></li>
     <li><a href="#commands">คำสั่ง</a></li>
     <li><a href="#dev">Developer</a></li>
   </ul>
-  <a href="https://discord.com/oauth2/authorize?client_id=1467101968068776199&permissions=8&integration_type=0&scope=bot" class="nav-cta" target="_blank">🤖 เชิญบอท</a>
+  <a href="https://discord.com/oauth2/authorize?client_id=1467345772591976570&permissions=8&integration_type=0&scope=bot" class="nav-cta" target="_blank">🤖 เชิญบอท</a>
 </nav>
 
 <section class="hero">
@@ -487,30 +507,30 @@
         <div class="av-star">🌟</div>
         <div class="av-star">💫</div>
         <div class="avatar-img-wrap">
-          <img src="https://s13.gifyu.com/images/bqz8Z.gif" alt="วิล เซอร์ฟอท (Bot)" class="avatar-img"
+          <img src="https://s13.gifyu.com/images/bqltd.png" alt="Music-1 (Bot)" class="avatar-img"
                onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'"/>
         </div>
       </div>
       <div class="avatar-status">
         <div class="dot-online"></div>
-        ONLINE · BPXZ STORE
+        ONLINE · Music-1
       </div>
     </div>
     <div class="hero-text">
       <div class="hero-tag">✨ Discord Bot · Thailand 🇹🇭</div>
       <h1 class="hero-title">
-        <span class="t1">วิล เซอร์ฟอท (Bot)</span>
+        <span class="t1">Music-1 (Bot)</span>
         <span class="t2">Discord Bot 💙</span>
       </h1>
       <p class="hero-sub"><span id="typed"></span><span class="cursor-blink"></span></p>
       <div class="hero-stats">
         <div class="stat-pill"><div class="num">24/7</div><div class="lbl">Online</div></div>
-        <div class="stat-pill"><div class="num">6+</div><div class="lbl">Features</div></div>
+        <div class="stat-pill"><div class="num">5</div><div class="lbl">Features</div></div>
         <div class="stat-pill"><div class="num">5</div><div class="lbl">Commands</div></div>
-        <div class="stat-pill"><div class="num">🛡️</div><div class="lbl">Blacklist</div></div>
+        <div class="stat-pill"><div class="num">🎵</div><div class="lbl">Music</div></div>
       </div>
       <div class="hero-btns">
-        <a href="https://discord.com/oauth2/authorize?client_id=1467101968068776199&permissions=8&integration_type=0&scope=bot" class="btn btn-primary" target="_blank">🤖 เชิญบอทเข้าเซิร์ฟ</a>
+        <a href="https://discord.com/oauth2/authorize?client_id=1467345772591976570&permissions=8&integration_type=0&scope=bot" class="btn btn-primary" target="_blank">🤖 เชิญบอทเข้าเซิร์ฟ</a>
         <a href="https://discord.gg/BaU4wUmmME" class="btn btn-soft" target="_blank">💙 SUPPORT</a>
       </div>
     </div>
@@ -523,43 +543,39 @@
   </svg>
 </div>
 
+<!-- FEATURES: ตรงกับ Python จริง -->
 <section id="features">
   <div class="container">
     <div class="sec-header reveal">
       <div class="sec-tag">✨ Features</div>
       <h2 class="sec-title">ฟีเจอร์ของ <span class="accent">วิล เซอร์ฟอท (Bot)</span></h2>
-      <p class="sec-sub">ครบทุกฟีเจอร์ที่เซิร์ฟเวอร์ต้องการ ในบอทเดียว 🌸</p>
+      <p class="sec-sub">ฟีเจอร์ระบบเพลง YouTube ครบจบในบอทเดียว 🎵</p>
     </div>
     <div class="features-grid">
       <div class="feat-card reveal">
-        <div class="feat-icon-wrap">🔊</div>
-        <h3>ออนช่อง Voice อัตโนมัติ</h3>
-        <p>บอทออนช่อง Voice ตลอด 24 ชม. ถ้าหลุดออกจากช่อง ระบบจะกลับเข้าใหม่อัตโนมัติทันที</p>
+        <div class="feat-icon-wrap">🎵</div>
+        <h3>เล่นเพลง YouTube</h3>
+        <p>เล่นเพลงจาก YouTube ได้ทันที รองรับทั้งค้นหาชื่อเพลงและวาง URL โดยตรง ใช้ yt-dlp ดึงเสียงคุณภาพสูง</p>
       </div>
       <div class="feat-card reveal">
-        <div class="feat-icon-wrap">✏️</div>
-        <h3>เปลี่ยนชื่อช่องตามเวลา</h3>
-        <p>ตั้งตารางให้บอทเปลี่ยนชื่อห้อง Voice อัตโนมัติ เช่น เปิด/ปิด ตามช่วงเวลาที่กำหนด</p>
+        <div class="feat-icon-wrap">📋</div>
+        <h3>ระบบคิวเพลง</h3>
+        <p>เพิ่มเพลงเข้าคิวได้เรื่อยๆ บอทจะเล่นต่อเนื่องอัตโนมัติ เมื่อเล่นหมดคิวบอทจะออกจากช่องเสียง</p>
       </div>
       <div class="feat-card reveal">
-        <div class="feat-icon-wrap">📊</div>
-        <h3>Dashboard แบบ Embed</h3>
-        <p>ควบคุมบอทผ่านปุ่มใน Discord ได้เลย ไม่ต้องพิมพ์คำสั่ง ดูสถานะและตั้งค่าได้ในที่เดียว</p>
+        <div class="feat-icon-wrap">⏸️</div>
+        <h3>ควบคุมการเล่น</h3>
+        <p>หยุดชั่วคราว เล่นต่อ ข้ามเพลง และหยุดทั้งหมดได้ทุกคนในเซิร์ฟเวอร์ ไม่จำกัดสิทธิ์</p>
       </div>
       <div class="feat-card reveal">
-        <div class="feat-icon-wrap">🚫</div>
-        <h3>ระบบ Blacklist</h3>
-        <p>แบนคน ยศ หรือเซิร์ฟเวอร์ไม่ให้ใช้บอทได้ มีระบบป้องกันการใช้งานในทางที่ผิด</p>
+        <div class="feat-icon-wrap">🔗</div>
+        <h3>รองรับ URL และค้นหา</h3>
+        <p>วาง URL ของ YouTube หรือพิมพ์ชื่อเพลงก็ได้ ระบบค้นหาด้วย ytsearch อัตโนมัติ</p>
       </div>
       <div class="feat-card reveal">
-        <div class="feat-icon-wrap">📨</div>
-        <h3>ส่ง DM อัจฉริยะ</h3>
-        <p>ส่งข้อความ DM หาคนเดียว หรือ DM ทุกคนในเซิร์ฟพร้อมกัน เฉพาะเจ้าของเซิร์ฟเท่านั้น</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon-wrap">💾</div>
-        <h3>ฐานข้อมูล SQLite</h3>
-        <p>ตั้งค่าทุกอย่างถูกบันทึกลง Database รีสตาร์ทบอทข้อมูลไม่หาย โหลดค่าคืนอัตโนมัติ</p>
+        <div class="feat-icon-wrap">🔄</div>
+        <h3>เชื่อมต่อ Voice อัตโนมัติ</h3>
+        <p>บอทเข้าช่อง Voice ของผู้ใช้อัตโนมัติเมื่อสั่งเล่นเพลง และย้ายช่องตามได้หากผู้ใช้เปลี่ยนห้อง</p>
       </div>
     </div>
   </div>
@@ -571,6 +587,7 @@
   </svg>
 </div>
 
+<!-- COMMANDS: ตรงกับ Python จริง (5 คำสั่ง) -->
 <section id="commands">
   <div class="container">
     <div class="sec-header reveal">
@@ -578,37 +595,44 @@
       <h2 class="sec-title"><span class="accent">Slash</span> Commands</h2>
       <p class="sec-sub">คำสั่งทั้งหมดที่ใช้งานได้บน Discord 🎀</p>
     </div>
+
+    <div class="cmd-group-label reveal">🎵 ระบบเพลง</div>
     <div class="cmd-list">
       <div class="cmd-card reveal">
-        <div class="cmd-icon-wrap">⚙️</div>
-        <div class="cmd-name">/setup</div>
-        <div class="cmd-desc">เปิดแผงควบคุม Dashboard ตั้งค่า VC, ตาราง และ Blacklist ได้ครบในที่เดียว</div>
+        <div class="cmd-icon-wrap">▶️</div>
+        <div class="cmd-name">/play</div>
+        <div class="cmd-desc">เล่นเพลงจาก YouTube รองรับค้นหาชื่อเพลงหรือวาง URL ถ้าบอทกำลังเล่นอยู่จะเพิ่มเข้าคิวอัตโนมัติ ต้องอยู่ในช่องเสียงก่อน</div>
         <span class="cmd-badge badge-all">ทุกคน</span>
       </div>
       <div class="cmd-card reveal">
-        <div class="cmd-icon-wrap">💬</div>
-        <div class="cmd-name">/say</div>
-        <div class="cmd-desc">ให้บอทส่งข้อความแทนคุณไปยังช่องที่เลือก รองรับการเลือกช่องปลายทางได้เอง</div>
+        <div class="cmd-icon-wrap">⏭️</div>
+        <div class="cmd-name">/skip</div>
+        <div class="cmd-desc">ข้ามเพลงที่กำลังเล่นอยู่ไปยังเพลงถัดไปในคิว ถ้าไม่มีเพลงถัดไปบอทจะออกจากช่องเสียง</div>
         <span class="cmd-badge badge-all">ทุกคน</span>
       </div>
       <div class="cmd-card reveal">
-        <div class="cmd-icon-wrap">📩</div>
-        <div class="cmd-name">/dm send</div>
-        <div class="cmd-desc">ส่ง DM ส่วนตัวไปหาสมาชิกคนใดก็ได้ผ่าน User ID พร้อมระบุข้อความที่ต้องการ</div>
+        <div class="cmd-icon-wrap">⏸️</div>
+        <div class="cmd-name">/pause</div>
+        <div class="cmd-desc">หยุดเพลงชั่วคราว ต้องเล่นเพลงอยู่ก่อนถึงจะใช้ได้ สามารถกลับมาเล่นต่อด้วย /resume</div>
         <span class="cmd-badge badge-all">ทุกคน</span>
       </div>
       <div class="cmd-card reveal">
-        <div class="cmd-icon-wrap">📢</div>
-        <div class="cmd-name">/dm all</div>
-        <div class="cmd-desc">DM ทุกคนในเซิร์ฟพร้อมกัน เหมาะสำหรับประกาศสำคัญ เฉพาะเจ้าของเซิร์ฟเวอร์</div>
-        <span class="cmd-badge badge-admin">เจ้าของเซิร์ฟ</span>
+        <div class="cmd-icon-wrap">▶️</div>
+        <div class="cmd-name">/resume</div>
+        <div class="cmd-desc">เล่นเพลงต่อจากที่หยุดชั่วคราวไว้ด้วย /pause ต้องอยู่ในสถานะ paused เท่านั้น</div>
+        <span class="cmd-badge badge-all">ทุกคน</span>
       </div>
       <div class="cmd-card reveal">
-        <div class="cmd-icon-wrap">👑</div>
-        <div class="cmd-name">/dashboard</div>
-        <div class="cmd-desc">ดูภาพรวมเซิร์ฟเวอร์ทั้งหมด จัดการ Blacklist Guild และส่ง DM เจ้าของเซิร์ฟทุกเซิร์ฟ</div>
-        <span class="cmd-badge badge-owner">Owner</span>
+        <div class="cmd-icon-wrap">⏹️</div>
+        <div class="cmd-name">/stop</div>
+        <div class="cmd-desc">หยุดเพลง ล้างคิวทั้งหมด และบอทออกจากช่องเสียงทันที</div>
+        <span class="cmd-badge badge-all">ทุกคน</span>
       </div>
+    </div>
+
+    <div class="note-card reveal">
+      <div class="note-icon">💡</div>
+      <p>คำสั่งทั้งหมดเป็น <strong>Slash Commands</strong> ใช้งานได้ทุกคนในเซิร์ฟ ไม่จำกัดสิทธิ์ ต้องเข้าช่อง Voice ก่อนสั่ง /play บอทใช้ <strong>yt-dlp + FFmpeg</strong> สตรีมเสียงจาก YouTube</p>
     </div>
   </div>
 </section>
@@ -632,7 +656,7 @@
         <div class="dev-blob-ring"></div>
         <div class="dev-blob-ring2"></div>
         <div class="dev-img-wrap">
-          <img src="https://s13.gifyu.com/images/bqpEC.md.jpg" alt="bpxz_store_x2" class="dev-img"
+          <img src="https://s13.gifyu.com/images/bqpEC.md.jpg" alt="elfaria_albis_serfort" class="dev-img"
                onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'"/>
         </div>
       </div>
@@ -641,8 +665,8 @@
         <div class="dev-name">elfaria_albis_serfort</div>
         <div class="dev-role">Developer · เอลฟาเรีย อัลบิส เซอร์ฟอท</div>
         <p class="dev-desc">
-          ผู้พัฒนา วิล เซอร์ฟอท (Bot) มุ่งเน้นสร้างระบบ Discord ที่ทันสมัย เสถียรสูง
-          มีระบบความปลอดภัยแข็งแกร่ง รองรับหลายเซิร์ฟเวอร์พร้อมกัน 💙
+          ผู้พัฒนา Music-1 (Bot) สร้างระบบเพลง Discord ด้วย discord.py, yt-dlp และ FFmpeg
+          รองรับคิวเพลง ควบคุมการเล่น และสตรีมเสียงจาก YouTube ได้อย่างเสถียร 💙
         </p>
         <div class="dev-btns">
           <a href="https://discord.gg/t6gxZYzMQT" class="btn btn-soft" target="_blank" style="font-size:.83rem;padding:.5rem 1.2rem;">💙 BPXZ STORE</a>
@@ -654,17 +678,16 @@
 </section>
 
 <footer>
-  <div class="footer-logo">วิล เซอร์ฟอท (Bot)</div>
+  <div class="footer-logo">Music-1 (Bot)</div>
   <div class="footer-links">
     <a href="https://discord.gg/t6gxZYzMQT"  target="_blank">BPXZ STORE</a>
     <a href="https://discord.gg/BaU4wUmmME" target="_blank">SUPPORT</a>
-    <a href="https://discord.com/oauth2/authorize?client_id=1467101968068776199&permissions=8&integration_type=0&scope=bot"  target="_blank">INVITE BOT</a>
+    <a href="https://discord.com/oauth2/authorize?client_id=1467345772591976570&permissions=8&integration_type=0&scope=bot" target="_blank">INVITE BOT</a>
   </div>
-  <div class="footer-copy">© 2025 BPXZ STORE · วิล เซอร์ฟอท (Bot) · All rights reserved 💙</div>
+  <div class="footer-copy">© 2025 BPXZ STORE · Music-1 (Bot) · All rights reserved 💙</div>
 </footer>
 
 <script>
-/* BG SHAPES */
 (function(){
   const wrap = document.getElementById('bgShapes');
   const colors = [
@@ -689,14 +712,12 @@
   }
 })();
 
-/* TYPEWRITER */
 const phrases = [
-  'ดูแลเซิร์ฟเวอร์ตลอด 24 ชั่วโมง 🌙',
-  'ออนช่อง Voice อัตโนมัติ ไม่มีหลุด 🔊',
-  'เปลี่ยนชื่อช่องตามตารางเวลา ✏️',
-  'ระบบ Blacklist คน ยศ และเซิร์ฟ 🚫',
-  'ส่ง DM ทุกคนในเซิร์ฟได้พร้อมกัน 📨',
-  'ควบคุมผ่าน Dashboard ใน Discord 📊',
+  'เล่นเพลง YouTube ได้เลยทันที 🎵',
+  'ค้นหาชื่อเพลงหรือวาง URL ก็ได้ 🔗',
+  'ระบบคิวเพลง เล่นต่อเนื่องอัตโนมัติ 📋',
+  'หยุด เล่นต่อ ข้ามเพลงได้ทุกคน ⏯️',
+  'เชื่อม Voice ช่องอัตโนมัติ 🔊',
   'บอทคนไทย โดย BPXZ STORE 💙'
 ];
 let pIdx=0,cIdx=0,del=false;
@@ -715,7 +736,6 @@ function type(){
 }
 type();
 
-/* SCROLL REVEAL */
 const obs=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{
     if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*70);
